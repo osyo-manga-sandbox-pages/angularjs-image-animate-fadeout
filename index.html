@@ -1,0 +1,77 @@
+<html ng-app='MyApp'>
+  <head>
+    <title>
+      test
+    </title>
+    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular.min.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular-animate.min.js'></script>
+    <link href='http://netdna.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css' rel='stylesheet'>
+    <meta charset='utf-8'>
+    <meta content='IE=edge' http-equiv='X-UA-Compatible'>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+    <script language='javascript'>
+      angular.module("MyApp", ["ngAnimate"]);
+    </script>
+  </head>
+  <body>
+    <script>
+      var ImageDemoCtrl = function ($scope) {
+        $scope.images = [
+          "http://125.6.169.35/idolmaster/image_sp/card/l/c96e0729d1075d90a0dc35b9dc76c3ab.jpg",
+          "http://125.6.169.35/idolmaster/image_sp/card/l_noframe/c96e0729d1075d90a0dc35b9dc76c3ab.jpg"
+        ];
+        $scope.select_image = 0;
+        $scope.clicked = function (){
+          $scope.select_image = ($scope.select_image + 1) % 2;
+        }
+      };
+    </script>
+    <style>
+      .animate-fade.ng-enter,
+      .animate-fade.ng-leave,
+      .animate-fade.ng-move {
+        -webkit-transition: opacity 0.25s linear;
+        transition: opacity 0.25s linear;
+      }
+      
+      .animate-fade.ng-enter {
+        opacity: 0;
+      }
+      .animate-fade.ng-enter.ng-enter-active {
+        opacity: 1;
+      }
+      .animate-fade.ng-leave {
+        opacity: 1;
+      }
+      .animate-fade.ng-leave.ng-leave-active {
+        opacity: 0;
+      }
+      .image-repeat{
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      
+      .image-container {
+        position:relative;
+      }
+      
+      .image-container img {
+          display:block;
+          position:absolute;
+      }
+    </style>
+    <div class='container'>
+      <br>
+      <div ng-controller='ImageDemoCtrl'>
+        <button ng-click='clicked()'>Toggle</button>
+        <br>
+        <br>
+        <div class='image-container'>
+          <img class='animate-fade' ng-if='select_image == 0' ng-src='http://125.6.169.35/idolmaster/image_sp/card/l/c96e0729d1075d90a0dc35b9dc76c3ab.jpg'>
+          <img class='animate-fade' ng-if='select_image == 1' ng-src='http://125.6.169.35/idolmaster/image_sp/card/l_noframe/c96e0729d1075d90a0dc35b9dc76c3ab.jpg'>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
